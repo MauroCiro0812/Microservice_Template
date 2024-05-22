@@ -6,7 +6,7 @@ from microservice import microservice
 app = Flask(__name__)
 
 #Se declara el End point
-@app.route('/Microservice_facturacion', methods=['GET'])
+@app.route('/api/generacion_factura', methods=['GET'])
 def microservice_init():
     #El argumento se convierte en variable
     nit = request.args.get('nit')
