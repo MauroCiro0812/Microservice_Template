@@ -4,10 +4,11 @@ import json
 class consulta(connection):
 
     def consultar(nit):
+        #Nos traemos el cursor desde conexion
         curs = connection.connected()
-
+        #Declaramos una lista
         data = []
-
+        # Ejecutamos la consulta(query)
         curs.execute(f'''SELECT 
         cliente.nit, 
         cliente.nombreCliente, 
@@ -44,7 +45,7 @@ class consulta(connection):
         generacion ON cliente.nit = generacion.nitcliente
     WHERE
         cliente.nit = {nit};''')
-
+        # Los datos que nos trae la consulta los devolcemos en json
         for row in curs.fetchall():
             data_json = {
                 "nit": row[0],
@@ -79,6 +80,7 @@ class consulta(connection):
                     "mes": row[26]
                 }
             }
+            # los datos json los ingresamos a la lista
             data.append(data_json)
 
         return json.dumps(data)

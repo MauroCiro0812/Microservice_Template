@@ -1,15 +1,17 @@
+#Importamos flask, request, jsonify
 from flask import Flask,request,jsonify
 from microservice import microservice
 
 
 app = Flask(__name__)
 
+#Se declara el End point
 @app.route('/Microservice_facturacion', methods=['GET'])
 def microservice_init():
-
+    #El argumento se convierte en variable
     nit = request.args.get('nit')
 
-
+    #Si la variable no tiene valor retornameros el mensaje
     if nit is None or nit == "":
         return jsonify({'error': 'Se requieren los tres parámetros: nit'}), 400
         
